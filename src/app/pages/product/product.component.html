@@ -1,0 +1,192 @@
+ <div class="container">
+  <div class="row col-md-12">
+  <table class="table">
+  <thead>
+  <a href="#" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#myModal" (click)="addProduct(id_product,
+  name_product,
+  categorie_product,
+  quantity_product,
+  price_product,
+  taxes_product)"><b>+</b> Add new Products</a>
+      <tr>
+          <th>ID</th>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th class="text-center">Action</th>
+      </tr>
+  </thead>
+          <tr *ngFor="let data of arrayOfProducts;let i =index;" >
+              <td>1</td>
+                <td><img class="product_img" src="{{data.imgUrl}}"></td>
+              <td>{{data.name}}</td>
+              <td>{{data.price}}</td>
+              <td class="text-center"><a class='btn btn-info btn-xs' data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+
+          </tr>
+          <tr *ngFor="let data of data_product;let i =index;" >
+            <td>1</td>
+            <td>{{data.name_product}}</td>
+            <td>{{data.categorie_product}}</td>
+            <td class="text-center"><a class='btn btn-info btn-xs' data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span (click)="deleteProduct()" class="glyphicon glyphicon-remove"></span> Del</a></td>
+        </tr>
+  </table>
+  </div>
+</div> 
+
+  
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add product</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+       
+        <div class="modal-body">
+            <form class="form-horizontal">
+                <fieldset>
+                <legend>PRODUCTS</legend>
+
+                <label for="">id</label>
+                <br>
+                <input type="text" [(ngModel)]="id_product" name="id_product">
+                <br>
+        
+                <label for="">Name</label>
+                <br>
+                <input type="text" [(ngModel)]="name_product" name="name_product">
+                <br>
+            
+                </fieldset>
+            </form>
+        </div>
+  
+       
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="addProduct(id_product,
+          name_product,
+          categorie_product,
+          quantity_product,
+          price_product,
+          taxes_product)">Add</button>
+        </div>
+  
+      </div>
+    </div>
+  </div> 
+
+<div class="modal" id="myModal1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit product</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal">
+                <fieldset>
+              
+                <legend>PRODUCTS</legend>
+              
+                <label for="">id</label>
+                  <br>
+                  <input type="text" [(ngModel)]="id_product" name="id_product">
+                  <br>
+
+                  <label for="">Name</label>
+                  <br>
+                  <input type="text" [(ngModel)]="name_product" name="name_product">
+                  <br>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="editProduct()">Edit
+          </button>
+        </div>
+  
+      </div>
+    </div>
+  </div> 
+
+<!-- 
+  <table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Categorie</th>
+            <th>Cuantity</th>
+            <th>Price</th>
+            <th>Tax</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of data_product">
+            <td>{{data.id_product}}</td>
+            <td>{{data.name_product}}</td>
+            <td>{{data.categorie_product}}</td>
+            <td>{{data.quantity_product}}</td>
+            <td>{{data.price_product}}</td>
+            <td>{{data.taxes_product}}</td>
+            <td>
+                <button type="button">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<div class="agregar-persona">
+    <form>
+        <label for="">id</label>
+        <br>
+        <input type="text" [(ngModel)]="id_product" name="id_product">
+        <br>
+
+        <label for="">Name</label>
+        <br>
+        <input type="text" [(ngModel)]="name_product" name="name_product">
+        <br>
+
+        <label for="">Categorie</label>
+        <br>
+        <input type="text" [(ngModel)]="categorie_product" name="categorie_product">
+
+        <br>
+        <label for="">Cuantity</label>
+        <br>
+        <input type="text" [(ngModel)]="quantity_product" name="quantity_product">
+        <br>
+
+        <label for="">Price</label>
+        <br>
+        <input type="text" [(ngModel)]="price_product" name="price_product">
+        <br>
+
+        <label for="">Tax</label>
+        <br>
+        <input type="text" [(ngModel)]="taxes_product" name="taxes_product">
+        <hr>
+        <button type="button" (click)="addProduct(id_product,
+                                                name_product,
+                                                categorie_product,
+                                                quantity_product,
+                                                price_product,
+                                                taxes_product)">
+        Add Product
+      </button>
+        <button type="button" (click)="getProducts()" style="margin-left:5px;">
+        Get Products
+      </button>
+        <button type="button" (click)="editProduct()" style="margin-left:5px;">
+        Edit Product
+      </button>
+        <button type="button" (click)="deleteProduct()" style="margin-left:5px;">
+        Delete Product
+      </button>
+    </form>
+</div> -->
